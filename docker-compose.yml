@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  iristest:
+    image: containers.intersystems.com/intersystems/irishealth-community:2022.1.2.574.0
+    ports: ["9094:1972","9095:52773"]
+    container_name: iris
+    volumes: ["./pysrc:/pysrc","./irisdata:/dur"]
+    environment: 
+      - TZ=JST-9
+      - ISC_DATA_DIRECTORY=/dur/config
