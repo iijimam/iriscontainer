@@ -1,4 +1,4 @@
 .vscode
 irisdata
-pysrc\__pycace__
+pysrc\__pycache__
 command*.txt
