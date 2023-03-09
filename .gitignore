@@ -1,4 +1,4 @@
 .vscode
 irisdata
-pysrc/__pycache__/*
+!pysrc/.gitignore
 command*.txt

@@ -51,7 +51,7 @@ docker login -u="iijima" -p="ixxxxxxxxxxxxxx"  containers.intersystems.com
 
     - コンテナ名を `iris` とし、ホスト側のスーパーサーバポートを`9091`、Webサーバポートを`9092`に割り当てる
         ```
-        docker run --name iris -d --publish 9091:1972 --publish 9092:52773 containers.intersystems.com/intersystems/irishealth-community:2022.1.2.574.0
+        docker run --name iris -d --publish 9091:1972 --publish 9092:52773 intersystems/irishealth-community:2022.1.2.574.0
         ```
 
     - コンテナ名を `iris` とし、コンテナのタイムゾーンを日本時間に設定（`-e TZ=JST-9`）、ホスト側のスーパーサーバポートを`9091`、Webサーバポートを`9092`に割り当て、ホストの `./pysrcディレクトリ` をコンテナの `/pysrcディレクトリ` にボリュームマウントする
@@ -59,14 +59,14 @@ docker login -u="iijima" -p="ixxxxxxxxxxxxxx"  containers.intersystems.com
         >事前にホスト上の `./pysrcディレクトリ`の権限を所有者以外からアクセスできるように（コンテナ内から利用できるように）変更しています。
 
         ```
-        docker run --name iris -d -e TZ=JST-9 --publish 9091:1972 --publish 9092:52773 --volume ./pysrc:/pysrc containers.intersystems.com/intersystems/irishealth-community:2022.1.2.574.0
+        docker run --name iris -d -e TZ=JST-9 --publish 9091:1972 --publish 9092:52773 --volume ./pysrc:/pysrc intersystems/irishealth-community:2022.1.2.574.0
         ```
 
     - コンテナ名を `iris` とし、コンテナのタイムゾーンを日本時間に設定（`-e TZ=JST-9`）、ホスト側のスーパーサーバポートを`9091`、Webサーバポートを`9092`に割り当て、ホストの `./pysrcディレクトリ` をコンテナの `/pysrcディレクトリ` にボリュームマウントする。CPUの割り当て数を指定して（`--cpuset-cpus 0`）コンテナを開始する。
 
         >事前にホスト上の `./pysrcディレクトリ`の権限を所有者以外からアクセスできるように（コンテナ内から利用できるように）変更しています。
         ```
-        docker run --name iris -d -e TZ=JST-9 --publish 9091:1972 --publish 9092:52773 --volume ./pysrc:/pysrc --cpuset-cpus 0 containers.intersystems.com/intersystems/irishealth-community:2022.1.2.574.0
+        docker run --name iris -d -e TZ=JST-9 --publish 9091:1972 --publish 9092:52773 --volume ./pysrc:/pysrc --cpuset-cpus 0 intersystems/irishealth-community:2022.1.2.574.0
         ```
 
     b) `docker-compose.yml`を使う場合
@@ -80,7 +80,7 @@ docker login -u="iijima" -p="ixxxxxxxxxxxxxx"  containers.intersystems.com
 
     services:
     iristest:
-        image: containers.intersystems.com/intersystems/irishealth-community:2022.1.2.574.0
+        image: intersystems/irishealth-community:2022.1.2.574.0
         ports: ["9094:1972","9095:52773"]
         container_name: iris
         volumes: ["./pysrc:/pysrc"]
@@ -244,7 +244,7 @@ docker login -u="iijima" -p="ixxxxxxxxxxxxxx"  containers.intersystems.com
 
     services:
     iristest:
-        image: containers.intersystems.com/intersystems/irishealth-community:2022.1.2.574.0
+        image: intersystems/irishealth-community:2022.1.2.574.0
         ports: ["9094:1972","9095:52773"]
         container_name: iris
         volumes: ["./pysrc:/pysrc","./irisdata:/dur"]
@@ -265,6 +265,8 @@ docker login -u="iijima" -p="ixxxxxxxxxxxxxx"  containers.intersystems.com
 - 新規ユーザ（testusr）
 - TESTネームスペースで[Sample.Personクラス](/src/Sample/Person.cls)を作成
 - TESTネームスペースで[Sample.Personクラス](/src/Sample/Person.cls)（テーブル）のデータを1件作成
+
+> ネームスペース、データベース作成手順について詳しくは、[【はじめての InterSystems IRIS】セルフラーニングビデオ：基本その2：InterSystems IRIS で開発をはじめよう！](https://jp.community.intersystems.com/node/478601) をご参照ください。
 
 `iris session iris -U TEST`で作成したTESTネームスペースにログインしています。
 
